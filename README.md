@@ -1,7 +1,6 @@
-# email-scanner-
 Email Scraper
 
-This script is used to scrape email addresses from a website. It can also save the results in a PDF report.
+This script is a simple web scraper that extracts email addresses from a given website. The script takes in a website URL as input and makes a GET request to the website to retrieve its HTML. The HTML is then parsed using the BeautifulSoup library, and the script searches for all anchor tags. If an anchor tag contains an href attribute that starts with "mailto:", the script extracts the email address and adds it to a list of email addresses.
 
 Requirements
 
@@ -11,23 +10,18 @@ BeautifulSoup library
 fpdf library
 Usage
 
-Run the script by executing python email_scraper.py in the command line.
-Enter the URL of the website you want to scrape for email addresses.
-The script will display a list of email addresses found on the website and will also save the results in a PDF report.
-Features
+Clone the repository
+Open a terminal and navigate to the directory containing the script
+Run the command python email_scraper.py
+Enter the website URL when prompted
+The script will display the list of email addresses found on the website and also save a PDF report of the email addresses found on the website
+Additional Features
 
-Scrape email addresses from a website
-Save results in a PDF report
-Supports different file formats for storing the report (e.g. CSV, JSON, etc.)
-An option to choose the level of depth of the scan (e.g. scan only the starting page, scan one level of links, scan all linked pages, etc.).
-Limitations
+The script also allows you to save the report in different formats like CSV, JSON
+The script also allows you to choose the level of depth of the scan.
+Note
 
-The script only scrapes email addresses that are present in the HTML source code of the website and not in the JavaScript or any other dynamic content.
-The script also doesn't support scanning of multiple pages of a website.
-The script doesn't support XSS and SQL injection scans.
-Please keep in mind that this script should be used for ethical and legal purposes only. Scraping websites without their permission is illegal in some jurisdictions and may violate their terms of service.
+The script is designed to only extract email addresses from the website and does not perform any XSS or SQL injection scans.
+Support
 
-## Note
-- Use this script responsibly, and only on websites that you have permission to scan.
-- It is important to install the required libraries before running the script, by running `pip install -r requirements.txt`
-
+If you have any issues or questions about this script, please open an issue on the repository or contact me via email.
