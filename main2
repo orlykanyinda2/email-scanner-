@@ -1,0 +1,68 @@
+from bs4 import BeautifulSoup
+from fpdf import FPDF
+import os
+
+# Get the website URL and scan level from user input
+url = input("Enter a website URL: ")
+if not url.startswith("http"):
+    url = "http://" + url
+
+scan_level = input("Enter the level of scan (1-3): ")
+if scan_level not in ["1", "2", "3"]:
+    print("Invalid scan level. Defaulting to level 1.")
+    scan_level = 1
+else:
+    scan_level = int(scan_level)
+
+# Make a GET request to the website
+response = requests.get(url)
+
+# Parse the HTML
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Initialize list to store email addresses
+emails = []
+
+# Search for all anchor tags
+for link in soup.find_all('a'):
+    # Get the href attribute
+    href = link.get('href')
+    if href:
+        # Check if the href is an email address
+        if 'mailto:' in href:
+            email = href.replace('mailto:', '')
+            emails.append(email)
+
+# Create a report
+report = "Email addresses found on {}:\n\n{}".format(url, "\n".join(emails))
+
+# Print the report
+print(report)
+
+# Create a PDF report
+pdf = FPDF()
+pdf.add_page()
+pdf.set_font("Arial", size=12)
+pdf.cell(200, 10, txt=report, ln=1, align="C")
+pdf_file = "emails_on_" + url + ".pdf"
+pdf.output(pdf_file)
+
+# Check if the user has write permission
+if os.access(pdf_file, os.W_OK):
+    print("Report saved as pdf")
+else:
+    print("Cannot save report as pdf, due to insufficient write permission")
+
+# Add a welcome message
+print("Welcome to the website scanner")
+
+# Add code to implement the chosen scan level
+if scan_level == 1:
+    # Only scan the starting page
+    pass
+elif scan_level == 2:
+    # Scan one level of links
+    pass
+elif scan_level == 3:
+    # Scan all linked pages
+    pass
