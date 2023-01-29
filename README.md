@@ -1,27 +1,26 @@
-Email Scraper
+README
+Introduction
+This code is a website scanner that searches for email addresses on a given website. It allows the user to specify the level of scanning (1-3) and generates a report of all the email addresses found. The report is both printed to the console and saved as a PDF file.
 
-This script is a simple web scraper that extracts email addresses from a given website. The script takes in a website URL as input and makes a GET request to the website to retrieve its HTML. The HTML is then parsed using the BeautifulSoup library, and the script searches for all anchor tags. If an anchor tag contains an href attribute that starts with "mailto:", the script extracts the email address and adds it to a list of email addresses.
+Dependencies
+This code requires the following python packages to be installed:
 
-Requirements
-
-Python 3.x
-requests library
-BeautifulSoup library
-fpdf library
+requests
+bs4 (BeautifulSoup)
+fpdf
 Usage
+Enter a website URL: The code prompts the user to enter a website URL. The URL must start with either "http" or "https". If the user does not specify "http" or "https", the code will add "http://" to the beginning of the URL.
 
-Clone the repository
-Open a terminal and navigate to the directory containing the script
-Run the command python email_scraper.py
-Enter the website URL when prompted
-The script will display the list of email addresses found on the website and also save a PDF report of the email addresses found on the website
-Additional Features
+Enter the level of scan (1-3): The user is prompted to enter the level of scan (1-3). If the user enters an invalid value, the code defaults to level 1.
 
-The script also allows you to save the report in different formats like CSV, JSON
-The script also allows you to choose the level of depth of the scan.
-Note
+Output
+The code generates a report of all the email addresses found on the website. The report is printed to the console and saved as a PDF file with the name "emails_on_[URL].pdf".
 
-The script is designed to only extract email addresses from the website and does not perform any XSS or SQL injection scans.
-Support
+Implementation of Scan Levels
+The code implements the chosen scan level as follows:
 
-If you have any issues or questions about this script, please open an issue on the repository or contact me via email.
+Level 1: Only the starting page is scanned.
+Level 2: One level of links is scanned.
+Level 3: All linked pages are scanned.
+Conclusion
+This code provides a quick and easy way to search for email addresses on a website. By allowing the user to specify the level of scanning, the code can be customized to fit the specific needs of the user. The generated report makes it easy to see all the email addresses found on the website, and the saved PDF file provides a permanent record of the results.
